@@ -1,0 +1,41 @@
+// 🌈 Global Color Variables — BinFawzi Store Theme
+// ===============================================
+
+// 🔴 Primary Brand Colors
+$color-primary: #D72638; // Red accent (main brand color)
+$color-primary-light: #E54C57; // Slightly lighter red (hover, active states)
+$color-primary-dark: #A91C28; // Darker red (for depth/shadows)
+
+// ⚫ Dark Theme Palette
+$color-bg-dark: #0F0F0F; // Main background (dark mode)
+$color-surface-dark: #1A1A1A; // Secondary surface (cards, modals)
+$color-border-dark: #2C2C2C; // Border/outline color in dark mode
+$color-text-dark: #FFFFFF; // Text color on dark backgrounds
+$color-text-muted-dark: #B5B5B5; // Secondary text on dark mode
+
+// ⚪ Light Theme Palette
+$color-bg-light: #F9F9F9; // Main background (light mode)
+$color-surface-light: #FFFFFF; // Card/background surfaces in light mode
+$color-border-light: #E0E0E0; // Light gray borders
+$color-text-light: #121212; // Text color on light backgrounds
+$color-text-muted-light: #6E6E6E; // Muted text color
+
+// 🟢 Semantic / Feedback Colors (optional)
+$color-success: #4CAF50; // Success (add to cart success, etc.)
+$color-warning: #FFC107; // Warnings or notifications
+$color-error: #E53935; // Error states (failed login, etc.)
+
+// 🌙 Theme Toggles (for easy switching)
+$dark-theme: (
+  bg: $color-bg-dark,
+  text: $color-text-dark,
+  border: $color-border-dark,
+  surface: $color-surface-dark,
+);
+
+$light-theme: (
+  bg: $color-bg-light,
+  text: $color-text-light,
+  border: $color-border-light,
+  surface: $color-surface-light,
+);
