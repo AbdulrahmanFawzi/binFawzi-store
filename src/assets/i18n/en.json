@@ -1,0 +1,86 @@
+{
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account",
+      "rememberMe": "Remember me",
+      "signIn": "Sign In",
+      "signingIn": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Sign Up"
+    },
+    "signup": {
+      "title": "Create Account",
+      "subtitle": "Join BinFawzi Store today",
+      "signUp": "Sign Up",
+      "signingUp": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign In"
+    },
+    "fields": {
+      "username": {
+        "label": "Username",
+        "placeholder": "Enter your username"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password",
+        "show": "Show password",
+        "hide": "Hide password"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email address"
+      },
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Enter your first name"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Enter your last name"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "Confirm your password"
+      }
+    },
+    "errors": {
+      "required": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "minLength": "Must be at least {{min}} characters",
+      "maxLength": "Must be no more than {{max}} characters",
+      "passwordMatch": "Passwords do not match",
+      "invalidCredentials": "Invalid username or password",
+      "networkError": "Network error. Please try again.",
+      "serverError": "Server error. Please try again later.",
+      "userExists": "User already exists"
+    },
+    "success": {
+      "loginSuccess": "Login successful! Welcome back.",
+      "signupSuccess": "Account created successfully! Please sign in.",
+      "logoutSuccess": "You have been logged out successfully."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up"
+  }
+}
