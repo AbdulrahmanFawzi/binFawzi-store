@@ -15,14 +15,14 @@ export interface SignupRequest {
   /** Password (will be validated on frontend) */
   password: string;
   
-  /** User's first name */
-  firstname: string;
+  /** User's first name (optional) */
+  firstname?: string;
   
-  /** User's last name */
-  lastname: string;
+  /** User's last name (optional) */
+  lastname?: string;
   
-  /** User's phone number */
-  phone: string;
+  /** User's phone number (optional) */
+  phone?: string;
 }
 
 /**

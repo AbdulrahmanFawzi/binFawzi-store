@@ -1,0 +1,483 @@
+/**
+ * 📝 Signup Component Styles - BinFawzi Store
+ * 
+ * Card-based registration design using global color variables.
+ * Follows the same pattern as login component with additional success messaging.
+ * Responsive, accessible, and modern UI patterns.
+ */
+
+// Import global color variables
+@import '../../../../../styles/global-colors.scss';
+
+// ===========================================
+// 🌐 MAIN CONTAINER & LAYOUT
+// ===========================================
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;   
+  align-items: center;       
+  background: $color-bg-dark;
+  padding: 1rem;
+  background-image: none;    
+}
+
+.auth-card {
+  background: $color-surface-dark;
+  border: 1px solid $color-border-dark;
+  border-radius: 16px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba($color-primary, 0.1);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 380px;
+  height: auto !important;
+  min-height: auto !important;
+  flex: 0 0 auto;         
+  align-self: center;      
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba($color-primary, 0.3), transparent, rgba($color-primary, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+// ===========================================
+// 📸 LOGO SECTION
+// ===========================================
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+.auth-logo {
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba($color-primary, 0.3));
+  transition: transform 0.3s ease, filter 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 16px rgba($color-primary, 0.4));
+  }
+}
+
+// ===========================================
+// 📝 FORM HEADER
+// ===========================================
+
+.form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: $color-text-dark;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.025em;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: $color-text-muted-dark;
+  margin: 0;
+  font-weight: 400;
+}
+
+// ===========================================
+// ✅ SUCCESS MESSAGE
+// ===========================================
+
+.success-message {
+  background: rgba($color-success, 0.1);
+  border: 1px solid rgba($color-success, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.success-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.success-icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.success-text {
+  color: $color-success;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+// ===========================================
+// ⚠️ ERROR MESSAGE
+// ===========================================
+
+.error-message {
+  background: rgba($color-error, 0.1);
+  border: 1px solid rgba($color-error, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.error-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.error-text {
+  color: $color-error;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+// ===========================================
+// 📝 FORM STYLES
+// ===========================================
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-text-dark;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.025em;
+}
+
+// ===========================================
+// 📥 INPUT STYLES
+// ===========================================
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  padding-right: 2.75rem; // Space for icon
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: $color-text-dark;
+  background: rgba($color-text-dark, 0.05);
+  border: 1.5px solid $color-border-dark;
+  border-radius: 25px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  
+  &::placeholder {
+    color: $color-text-muted-dark;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+
+  // Fix browser autocomplete styling - aggressive approach
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px rgba($color-text-dark, 0.05) inset !important;
+    -webkit-text-fill-color: $color-text-dark !important;
+    color: $color-text-dark !important;
+    background-color: transparent !important;
+    border-radius: 25px !important;
+    caret-color: $color-text-dark !important;
+  }
+  
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px rgba($color-text-dark, 0.05) inset !important;
+    -webkit-text-fill-color: $color-text-dark !important;
+    color: $color-text-dark !important;
+    background-color: transparent !important;
+    border-radius: 25px !important;
+    caret-color: $color-text-dark !important;
+    transition: color 9999s ease-out, background-color 9999s ease-out !important;
+  }
+
+  // Additional fallback for persistent browsers
+  &[autocomplete]::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.input-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  
+  .icon {
+    font-size: 1.125rem;
+    color: $color-text-muted-dark;
+  }
+}
+
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  pointer-events: all;
+  
+  &:hover {
+    background: rgba($color-text-dark, 0.1);
+  }
+  
+  .icon {
+    color: $color-text-muted-dark;
+    transition: color 0.2s ease;
+  }
+  
+  &:hover .icon {
+    color: $color-primary;
+  }
+}
+
+// ===========================================
+// ❌ FIELD ERROR MESSAGES
+// ===========================================
+
+.field-error {
+  font-size: 0.75rem;
+  color: $color-error;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  animation: slideDown 0.2s ease-out;
+  
+  &::before {
+    content: '⚠️';
+    font-size: 0.75rem;
+  }
+}
+
+// ===========================================
+// 🚀 SUBMIT BUTTON
+// ===========================================
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-text-dark;
+  background: linear-gradient(135deg, $color-primary, $color-primary-light);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.25rem;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, $color-primary-light, $color-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba($color-primary, 0.3);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  &.loading {
+    pointer-events: none;
+  }
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button-text {
+  font-weight: 600;
+}
+
+.button-icon {
+  font-size: 1.125rem;
+}
+
+// Loading spinner animation
+.loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba($color-text-dark, 0.3);
+  border-top: 2px solid $color-text-dark;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// ===========================================
+// 🔗 NAVIGATION LINKS
+// ===========================================
+
+.auth-links {
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+.signup-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.divider-text {
+  font-size: 0.875rem;
+  color: $color-text-muted-dark;
+  font-weight: 500;
+}
+
+.switch-link {
+  color: $color-primary;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link-text {
+  font-weight: 600;
+}
+
+.link-icon {
+  font-size: 1rem;
+}
+
+// ===========================================
+// 📱 RESPONSIVE DESIGN
+// ===========================================
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 0.5rem;
+  }
+  
+  .auth-card {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .auth-logo {
+    max-width: 100px;
+  }
+  
+  .form-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-input {
+    padding: 0.5rem 0.75rem;
+    padding-right: 2.5rem;
+  }
+}
+
+// ===========================================
+// 🎭 ANIMATIONS
+// ===========================================
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ===========================================
+// ♿ ACCESSIBILITY IMPROVEMENTS
+// ===========================================
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

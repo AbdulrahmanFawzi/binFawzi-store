@@ -7,6 +7,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/components/login/login').then(m => m.LoginComponent),
     title: 'Login - BinFawzi Store'
   },
+  {
+    path: 'auth/signup',
+    loadComponent: () => import('./features/auth/components/signup/signup').then(m => m.SignupComponent),
+    title: 'Sign Up - BinFawzi Store'
+  },
   
   // 🏠 Default redirect to login for now
   {

@@ -1,0 +1,189 @@
+<!-- 📝 Signup Component Template - BinFawzi Store -->
+<div class="auth-container">
+  <div class="auth-card">
+    
+    <!-- 📸 Logo Section -->
+    <div class="logo-area">
+      <img src="assets/images/logo-circle.png" alt="BinFawzi Store" class="auth-logo">
+    </div>
+
+    <!-- 📝 Form Header -->
+    <div class="form-header">
+      <h1 class="form-title">{{ 'auth.signup.title' | translate }}</h1>
+      <p class="form-subtitle">{{ 'auth.signup.subtitle' | translate }}</p>
+    </div>
+
+    <!-- ✅ Success Message Display -->
+    <div class="success-message" *ngIf="successMessage" role="alert">
+      <div class="success-content">
+        <span class="success-icon">✅</span>
+        <span class="success-text">{{ successMessage }}</span>
+      </div>
+    </div>
+
+    <!-- ⚠️ Error Message Display -->
+    <div class="error-message" *ngIf="errorMessage" role="alert">
+      <div class="error-content">
+        <span class="error-icon">⚠️</span>
+        <span class="error-text">{{ errorMessage }}</span>
+      </div>
+    </div>
+
+    <!-- 📝 Signup Form -->
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="auth-form" novalidate>
+      
+      <!-- 📧 Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">{{ 'auth.fields.email.label' | translate }}</label>
+        <div class="input-wrapper">
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="form-input"
+            [class.input-error]="isFieldError('email')"
+            [class.input-success]="isFieldValid('email')"
+            [placeholder]="'auth.fields.email.placeholder' | translate"
+            autocomplete="email"
+            [attr.aria-describedby]="isFieldError('email') ? 'email-error' : null"
+          >
+        </div>
+        <!-- Field Error Message -->
+        <div 
+          id="email-error" 
+          class="field-error" 
+          *ngIf="isFieldError('email')"
+          role="alert"
+        >
+          {{ getFieldError('email') }}
+        </div>
+      </div>
+
+      <!-- 👤 Username Field -->
+      <div class="form-group">
+        <label for="username" class="form-label">{{ 'auth.fields.username.label' | translate }}</label>
+        <div class="input-wrapper">
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            class="form-input"
+            [class.input-error]="isFieldError('username')"
+            [class.input-success]="isFieldValid('username')"
+            [placeholder]="'auth.fields.username.placeholder' | translate"
+            autocomplete="username"
+            [attr.aria-describedby]="isFieldError('username') ? 'username-error' : null"
+          >
+        </div>
+        <!-- Field Error Message -->
+        <div 
+          id="username-error" 
+          class="field-error" 
+          *ngIf="isFieldError('username')"
+          role="alert"
+        >
+          {{ getFieldError('username') }}
+        </div>
+      </div>
+
+      <!-- 🔒 Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">{{ 'auth.fields.password.label' | translate }}</label>
+        <div class="input-wrapper">
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            class="form-input"
+            [class.input-error]="isFieldError('password')"
+            [class.input-success]="isFieldValid('password')"
+            [placeholder]="'auth.fields.password.placeholder' | translate"
+            autocomplete="new-password"
+            [attr.aria-describedby]="isFieldError('password') ? 'password-error' : null"
+          >
+          <div class="input-icon">
+            <button
+              type="button"
+              class="toggle-password"
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+            >
+            </button>
+          </div>
+        </div>
+        <!-- Field Error Message -->
+        <div 
+          id="password-error" 
+          class="field-error" 
+          *ngIf="isFieldError('password')"
+          role="alert"
+        >
+          {{ getFieldError('password') }}
+        </div>
+      </div>
+
+      <!-- 🔒 Confirm Password Field -->
+      <div class="form-group">
+        <label for="confirmPassword" class="form-label">{{ 'auth.fields.confirmPassword.label' | translate }}</label>
+        <div class="input-wrapper">
+          <input
+            id="confirmPassword"
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            class="form-input"
+            [class.input-error]="isFieldError('confirmPassword')"
+            [class.input-success]="isFieldValid('confirmPassword')"
+            [placeholder]="'auth.fields.confirmPassword.placeholder' | translate"
+            autocomplete="new-password"
+            [attr.aria-describedby]="isFieldError('confirmPassword') ? 'confirmPassword-error' : null"
+          >
+          <div class="input-icon">
+            <button
+              type="button"
+              class="toggle-password"
+              (click)="toggleConfirmPasswordVisibility()"
+              [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'"
+            >
+            </button>
+          </div>
+        </div>
+        <!-- Field Error Message -->
+        <div 
+          id="confirmPassword-error" 
+          class="field-error" 
+          *ngIf="isFieldError('confirmPassword')"
+          role="alert"
+        >
+          {{ getFieldError('confirmPassword') }}
+        </div>
+      </div>
+
+      <!-- 🚀 Submit Button -->
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="signupForm.invalid || isLoading"
+        [class.loading]="isLoading"
+      >
+        <span class="button-content" *ngIf="!isLoading">
+          <span class="button-text">{{ 'auth.signup.signUp' | translate }}</span>
+        </span>
+        <span class="button-content" *ngIf="isLoading">
+          <span class="loading-spinner"></span>
+          <span class="button-text">{{ 'auth.signup.signingUp' | translate }}</span>
+        </span>
+      </button>
+
+    </form>
+
+    <!-- 🔗 Navigation Links -->
+    <div class="auth-links">
+      <br>
+      <div class="signup-text">
+        <span class="divider-text">{{ 'auth.signup.hasAccount' | translate }}</span>
+        <a routerLink="/auth/login" class="switch-link">{{ 'auth.signup.signInLink' | translate }}</a>
+      </div>
+    </div>
+
+  </div>
+</div>
