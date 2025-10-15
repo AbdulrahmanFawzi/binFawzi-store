@@ -1,0 +1,79 @@
+<!-- Header Container -->
+<header 
+  class="header" 
+  (keydown)="onKeydown($event)"
+  role="banner">
+
+  <!-- Left Section: Menu + Logo -->
+  <div class="header-left">
+    <!-- Hamburger Menu Button -->
+    <button 
+      class="menu-btn" 
+      (click)="toggleSidebar()"
+      [attr.aria-label]="'navigation.openMenu' | translate"
+      [attr.aria-expanded]="isSidebarOpen">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Platform Logo -->
+    <div class="logo-section">
+      <img 
+        src="assets/images/logo-circle.png" 
+        [alt]="'branding.logoAlt' | translate" 
+        class="logo-image">
+      <div class="logo-text">
+        <span class="brand-name">{{ 'branding.name' | translate }}</span>
+        <span class="brand-subtitle">{{ 'branding.subtitle' | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Center Section: Navigation Menu -->
+  <nav class="header-center" role="navigation">
+    <a 
+      routerLink="/landing" 
+      routerLinkActive="active"
+      class="nav-link"
+      [attr.aria-label]="'navigation.home' | translate">
+      {{ 'navigation.home' | translate | uppercase }}
+    </a>
+    <a 
+      routerLink="/products" 
+      routerLinkActive="active"
+      class="nav-link"
+      [attr.aria-label]="'navigation.products' | translate">
+      {{ 'navigation.products' | translate | uppercase }}
+    </a>
+    <a 
+      routerLink="/cart" 
+      routerLinkActive="active"
+      class="nav-link"
+      [attr.aria-label]="'navigation.cart' | translate">
+      {{ 'navigation.cart' | translate | uppercase }}
+    </a>
+  </nav>
+
+  <!-- Right Section: Search + Cart Icons -->
+  <div class="header-right">
+    <button 
+      class="icon-btn" 
+      [attr.aria-label]="'accessibility.search' | translate">
+      <img src="assets/images/search.png" [alt]="'accessibility.search' | translate">
+    </button>
+    <button 
+      class="icon-btn" 
+      routerLink="/cart"
+      [attr.aria-label]="'accessibility.cart' | translate">
+      <img src="assets/images/cart.png" [alt]="'accessibility.cart' | translate">
+    </button>
+  </div>
+
+</header>
+
+<!-- Sidebar Component -->
+<app-sidebar 
+  [isOpen]="isSidebarOpen" 
+  (closeSidebar)="closeSidebar()">
+</app-sidebar>

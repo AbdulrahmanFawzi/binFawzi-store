@@ -7,6 +7,15 @@
  * Educational Focus: Demonstrates reactive forms, validation, and auth integration
  */
 
+// that is the working login credentials
+
+// // These are the only working login credentials:
+// username: "mor_2314", password: ""
+// username: "kevinryan", password: "kev02937@"
+// username: "donero", password: "ewedon"
+// // ... and a few others
+
+
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -140,15 +149,15 @@ export class LoginComponent implements OnInit {
   /**
    * ✅ Handle Successful Login
    * 
-   * Redirects user to home page after successful authentication
+   * Redirects user to landing page after successful authentication
    */
   private handleLoginSuccess(): void {
     // Reset loading state
     this.isLoading = false;
     this.loginForm.enable();
 
-    // Navigate to home page (will be protected by AuthGuard)
-    this.router.navigate(['/home']);
+    // Navigate to landing page (will be protected by AuthGuard)
+    this.router.navigate(['/landing']);
   }
 
   /**

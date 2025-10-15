@@ -74,13 +74,96 @@
     "next": "Next",
     "previous": "Previous"
   },
+
+  "landing": {
+    "hero": {
+      "price": "$134",
+      "brand": "JORDAN",
+      "productName": "JUMPMAN 2021 PF",
+      "cta": "Shop Now"
+    },
+    "inspiration": {
+      "title": "Inspiration",
+      "copy": "Inspired by the design of the latest Air Jordan game shoe. The Jumpman 2021 helps up-and-coming players level up their game."
+    }
+  },
+  "branding": {
+    "name": "BINFAWZI",
+    "subtitle": "STORE",
+    "logoAlt": "BinFawzi Store Logo"
+  },
   "navigation": {
     "home": "Home",
-    "products": "Products",
+    "products": "Products", 
     "cart": "Cart",
     "profile": "Profile",
+    "settings": "Settings",
     "login": "Login",
     "logout": "Logout",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "sidebarMenu": "Navigation Menu",
+    "openMenu": "Open Navigation Menu"
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "currentLanguage": "EN",
+    "currentTheme": "Dark"
+  },
+  "accessibility": {
+    "search": "Search",
+    "cart": "Shopping Cart",
+    "jordanLogo": "Jordan Brand Logo",
+    "nikeLogo": "Nike Logo"
+  },
+  "products": {
+    "pageTitle": "Explore Our Products",
+    "pageSubtitle": "Discover our exclusive collection",
+    "searchPlaceholder": "Search products...",
+    "filters": "Filters",
+    "allCategories": "All Categories",
+    "sortDefault": "Sort by",
+    "sortLabel": "Sort products by",
+    "sortPrice": "Price",
+    "sortName": "Name",
+    "sortRating": "Rating",
+    "sortOptions": {
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low",
+      "nameAsc": "Name: A to Z",
+      "nameDesc": "Name: Z to A",
+      "ratingDesc": "Highest Rated"
+    },
+    "add": "Add",
+    "addToCart": "Add {{product}} to cart",
+    "showingResults": "Showing {{count}} products",
+    "loading": "Loading products...",
+    "error": {
+      "title": "Oops! Something went wrong",
+      "message": "We couldn't load the products. Please try again.",
+      "retry": "Try Again"
+    },
+    "card": {
+      "addToCart": "Add to Cart",
+      "viewDetails": "View Details",
+      "outOfStock": "Out of Stock",
+      "rating": "Rating"
+    },
+    "categories": {
+      "electronics": "Electronics",
+      "jewelery": "Jewelry",
+      "men's clothing": "Men's Clothing",
+      "women's clothing": "Women's Clothing"
+    },
+    "actions": {
+      "clearSearch": "Clear search",
+      "resetFilters": "Reset all filters",
+      "applyFilters": "Apply filters"
+    },
+    "empty": {
+      "title": "No products found",
+      "message": "Try adjusting your search or filters to find what you're looking for.",
+      "suggestion": "Browse all products"
+    }
   }
 }

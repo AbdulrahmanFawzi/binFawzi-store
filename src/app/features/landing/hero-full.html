@@ -1,0 +1,34 @@
+<div class="frame">
+  <!-- Shared Header Component -->
+  <app-header></app-header>
+
+  <!-- Hero Poster with Positioned Elements -->
+  <section class="poster">
+    <!-- Call to Action Button -->
+    <a class="cta" routerLink="/products" [attr.aria-label]="'landing.hero.cta' | translate">
+      {{ 'landing.hero.cta' | translate }}
+    </a>
+
+    <!-- Center Price and Text -->
+    <div class="center-content">
+      <!-- Price -->
+      <div class="price-section">
+        <span class="amount">{{ 'landing.hero.price' | translate }}</span>
+      </div>
+
+      <!-- Brand and Product Text -->
+      <div class="brand-section">
+        <div class="brand-text">{{ 'landing.hero.brand' | translate }}</div>
+        <div class="product-text">{{ 'landing.hero.productName' | translate }}</div>
+      </div>
+    </div>
+
+    <!-- Left Side Inspiration Text -->
+    <aside class="right-content">
+      <div class="inspiration">
+        <h2 class="title">{{ 'landing.inspiration.title' | translate }}</h2>
+        <p class="copy">{{ 'landing.inspiration.copy' | translate }}</p>
+      </div>
+    </aside>
+  </section>
+</div>

@@ -7,7 +7,7 @@
  */
 
 // Import global color variables
-@import '../../../../../styles/global-colors.scss';
+@use '../../../../../styles/global-colors.scss' as *;
 
 // ===========================================
 // 🌐 MAIN CONTAINER & LAYOUT

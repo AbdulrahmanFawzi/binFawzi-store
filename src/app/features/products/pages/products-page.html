@@ -1,0 +1,188 @@
+<!-- Header Component -->
+<app-header></app-header>
+
+<!-- Main Content Container -->
+<main class="products-page">
+  
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="page-title">{{ 'products.pageTitle' | translate }}</h1>
+      <p class="page-subtitle">{{ 'products.pageSubtitle' | translate }}</p>
+    </div>
+  </section>
+
+  <!-- Controls Section -->
+  <section class="controls-section">
+    <div class="container">
+      
+      <!-- Search Input -->
+      <div class="search-container">
+        <div class="search-input-group">
+          <img src="assets/images/search.png" alt="" class="search-icon">
+          <input 
+            type="text"
+            class="search-input"
+            [placeholder]="'products.searchPlaceholder' | translate"
+            [formControl]="searchTermControl"
+            [attr.aria-label]="'products.searchLabel' | translate">
+        </div>
+      </div>
+
+      <!-- Right Controls -->
+      <div class="right-controls">
+        
+        <!-- Filter Icon Only -->
+        <img src="assets/images/filter-funnel-01.png" alt="" class="filter-icon standalone">
+
+        <!-- Category Dropdown -->
+        <div class="category-select">
+          <select 
+            class="category-dropdown"
+            [formControl]="categoryControl"
+            [attr.aria-label]="'products.categoryLabel' | translate">
+            <option value="">{{ 'products.allCategories' | translate }}</option>
+            <option 
+              *ngFor="let category of categories$ | async" 
+              [value]="category">
+              {{ category | titlecase }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Sort Dropdown -->
+        <div class="sort-select">
+          <select 
+            class="sort-dropdown"
+            [formControl]="sortByControl"
+            [attr.aria-label]="'products.sortLabel' | translate">
+            <option value="">{{ 'products.sortDefault' | translate }}</option>
+            <option value="price">{{ 'products.sortPrice' | translate }}</option>
+            <option value="title">{{ 'products.sortName' | translate }}</option>
+            <option value="rating">{{ 'products.sortRating' | translate }}</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results-section">
+    <div class="container">
+      
+      <!-- Results Header -->
+      <div class="results-header">
+        <div class="results-count">
+          <ng-container *ngIf="productsCount$ | async as count">
+            {{ 'products.showingResults' | translate: {count: count} }}
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div class="loading-container" *ngIf="loading$ | async as loadingState">
+        <div 
+          class="loading-spinner" 
+          *ngIf="loadingState === LoadingState.LOADING"
+          [attr.aria-label]="'common.loading' | translate">
+          <div class="spinner"></div>
+          <p>{{ 'common.loading' | translate }}</p>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div class="error-container" *ngIf="error$ | async as error">
+        <div class="error-message">
+          <h3>{{ 'common.error' | translate }}</h3>
+          <p>{{ error.message }}</p>
+          <button 
+            class="retry-btn" 
+            (click)="retryLoad()"
+            [attr.aria-label]="'common.retry' | translate">
+            {{ 'common.retry' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div 
+        class="products-grid" 
+        *ngIf="products$ | async as products"
+        [class.loading]="(loading$ | async) === LoadingState.LOADING">
+        
+        <!-- Product Card (will be replaced with component) -->
+        <article 
+          class="product-card" 
+          *ngFor="let product of products; trackBy: trackByProductId"
+          [attr.aria-label]="product.title">
+          
+          <!-- Product Image -->
+          <div class="product-image-container">
+            <img 
+              [src]="product.image" 
+              [alt]="product.title"
+              class="product-image"
+              loading="lazy">
+          </div>
+
+          <!-- Product Info -->
+          <div class="product-info">
+            
+            <!-- Category -->
+            <span class="product-category">{{ product.category | titlecase }}</span>
+            
+            <!-- Title -->
+            <h3 class="product-title">{{ product.title }}</h3>
+            
+            <!-- Description -->
+            <p class="product-description">
+              {{ product.description | slice:0:100 }}
+              <span *ngIf="product.description.length > 100">...</span>
+            </p>
+            
+            <!-- Rating (if available) -->
+            <div class="product-rating" *ngIf="product.rating">
+              <div class="rating-stars">
+                <!-- Star Icons -->
+                <div class="stars">
+                  <img src="assets/images/star.png" alt="" class="star" [class.filled]="product.rating.rate >= 1">
+                  <img src="assets/images/star.png" alt="" class="star" [class.filled]="product.rating.rate >= 2">
+                  <img src="assets/images/star.png" alt="" class="star" [class.filled]="product.rating.rate >= 3">
+                  <img src="assets/images/star.png" alt="" class="star" [class.filled]="product.rating.rate >= 4">
+                  <img src="assets/images/star.png" alt="" class="star" [class.filled]="product.rating.rate >= 5">
+                </div>
+                <span class="rating-value">{{ product.rating.rate | number:'1.1-1' }}</span>
+                <span class="rating-count">({{ product.rating.count }})</span>
+              </div>
+            </div>
+            
+            <!-- Price and Add Button -->
+            <div class="product-footer">
+              <span class="product-price">${{ product.price | number:'1.2-2' }}</span>
+              <button 
+                class="add-btn"
+                [attr.aria-label]="'products.addToCart' | translate: {product: product.title}">
+                <img src="assets/images/cart.png" alt="" class="btn-icon">
+                {{ 'products.add' | translate }}
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Empty State -->
+        <div class="empty-state" *ngIf="products.length === 0">
+          <h3>{{ 'products.noProducts' | translate }}</h3>
+          <p>{{ 'products.noProductsDescription' | translate }}</p>
+          <button 
+            class="clear-filters-btn" 
+            (click)="clearFilters()">
+            {{ 'products.clearFilters' | translate }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>

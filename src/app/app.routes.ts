@@ -13,6 +13,20 @@ export const routes: Routes = [
     title: 'Sign Up - BinFawzi Store'
   },
   
+  // 🏠 Landing/Home Page
+  {
+    path: 'landing',
+    loadComponent: () => import('./features/landing/hero-full').then(m => m.HeroFullComponent),
+    title: 'BinFawzi Store - Premium Shopping Experience'
+  },
+  
+  // 🛍️ Products Page
+  {
+    path: 'products',
+    loadComponent: () => import('./features/products/pages/products-page').then(m => m.ProductsPageComponent),
+    title: 'Products - BinFawzi Store'
+  },
+  
   // 🏠 Default redirect to login for now
   {
     path: '',

@@ -1,0 +1,108 @@
+<!-- Sidebar Backdrop -->
+<div 
+  class="sidebar-backdrop" 
+  [class.open]="isOpen"
+  (click)="onBackdropClick($event)"
+  [attr.aria-hidden]="!isOpen">
+
+  <!-- Sidebar Panel -->
+  <aside 
+    class="sidebar-panel" 
+    [class.open]="isOpen"
+    role="navigation"
+    [attr.aria-label]="'navigation.sidebarMenu' | translate">
+
+    <!-- Sidebar Header -->
+    <header class="sidebar-header">
+      <div class="logo-section">
+        <img 
+          src="assets/images/logo-circle.png" 
+          alt="BinFawzi Store Logo" 
+          class="logo-image">
+        <div class="logo-text">
+          <div class="brand-name">{{ 'branding.name' | translate }}</div>
+          <div class="brand-subtitle">{{ 'branding.subtitle' | translate }}</div>
+        </div>
+      </div>
+      
+      <!-- Close Button -->
+      <button 
+        class="close-btn" 
+        (click)="close()"
+        [attr.aria-label]="'common.close' | translate">
+        ✕
+      </button>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-nav">
+      <a 
+        routerLink="/landing" 
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="onNavigationClick()"
+        [attr.aria-label]="'navigation.home' | translate">
+        <img src="assets/images/home.png" alt="" class="nav-icon">
+        <span class="nav-text">{{ 'navigation.home' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/products" 
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="onNavigationClick()"
+        [attr.aria-label]="'navigation.products' | translate">
+        <img src="assets/images/store image.png" alt="" class="nav-icon">
+        <span class="nav-text">{{ 'navigation.products' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/cart" 
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="onNavigationClick()"
+        [attr.aria-label]="'navigation.cart' | translate">
+        <img src="assets/images/cart.png" alt="" class="nav-icon">
+        <span class="nav-text">{{ 'navigation.cart' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/profile" 
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="onNavigationClick()"
+        [attr.aria-label]="'navigation.profile' | translate">
+        <img src="assets/images/profile.png" alt="" class="nav-icon">
+        <span class="nav-text">{{ 'navigation.profile' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/settings" 
+        routerLinkActive="active"
+        class="nav-item"
+        (click)="onNavigationClick()"
+        [attr.aria-label]="'navigation.settings' | translate">
+        <img src="assets/images/settings.png" alt="" class="nav-icon">
+        <span class="nav-text">{{ 'navigation.settings' | translate }}</span>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <footer class="sidebar-footer">
+      <!-- Language Selector -->
+      <div class="footer-item">
+        <span class="footer-icon">🌐</span>
+        <span class="footer-text">{{ 'settings.language' | translate }}</span>
+        <span class="footer-value">{{ 'settings.currentLanguage' | translate }}</span>
+      </div>
+
+      <!-- Theme Toggle -->
+      <div class="footer-item">
+        <span class="footer-icon">🌙</span>
+        <span class="footer-text">{{ 'settings.theme' | translate }}</span>
+        <span class="footer-value">{{ 'settings.currentTheme' | translate }}</span>
+      </div>
+    </footer>
+
+  </aside>
+</div>

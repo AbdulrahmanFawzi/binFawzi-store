@@ -1,0 +1,248 @@
+@use '../../../styles/global-colors.scss' as *;
+
+// Custom red color matching the image
+$custom-red: #d90a0a; // Vibrant red from the image
+
+// Main container
+.frame {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  background: $color-bg-dark;
+  overflow: hidden;
+}
+
+// Header navigation
+.nav {
+  position: absolute;
+  top: 18px; left: 18px; right: 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 10;
+
+  .brand { height: 22px; opacity: .95; }
+  .nav-left { display: flex; gap: 16px; align-items: center; }
+
+  // Middle Navigation Menu
+  .nav-center {
+    display: flex;
+    gap: clamp(2rem, 4vw, 3rem);
+    align-items: center;
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      &.active {
+        color: #ffffff;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: $custom-red;
+        }
+      }
+    }
+  }
+
+  .nav-right {
+    display: flex; 
+    gap: 30px;
+    
+    .plain-icon {
+      display: grid; 
+      place-items: center;
+      
+      img {
+        width: 24px; 
+        height: 24px;
+        filter: brightness(0) invert(1);
+        opacity: 0.95;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+      
+      &:hover img {
+        opacity: 1; 
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+// Hero poster section
+.poster {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: url('/assets/images/hero-shoe.png') center/cover no-repeat;
+  color: #ffffff;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+}
+
+// Call to action button
+.cta {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  color: #121212;
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(2rem, 5vw, 3rem);
+  border: none;
+  border-radius: clamp(0.5rem, 1.5vw, 0.75rem);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  z-index: 3;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background: $custom-red;
+    color: #ffffff;
+    transform: translateX(-50%) translateY(-4px);
+    box-shadow: 0 8px 25px rgba($custom-red, 0.4);
+  }
+
+  &:active {
+    background: $custom-red;
+    color: #ffffff;
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 4px 15px rgba($custom-red, 0.6);
+  }
+}
+
+// Left side content area - Positioned at far left
+.right-content {
+  position: absolute;
+  left: clamp(2rem, 4vw, 3rem); // Changed from right to left
+  bottom: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+  align-items: flex-start; // Changed from flex-end to flex-start
+  text-align: left; // Changed from right to left
+  z-index: 2;
+  max-width: clamp(250px, 25vw, 350px);
+}
+
+// Center Content - Price and Brand Text next to shoe
+.center-content {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row; // Changed from column to row for horizontal layout
+  align-items: center; // Center align both price and text vertically
+  gap: clamp(1rem, 2vw, 2rem); // Add gap between price and text
+  text-align: center;
+  z-index: 3;
+  margin-left: clamp(8rem, 15vw, 12rem);
+}
+
+// Price Section - Next to shoe
+.price-section {
+  margin-bottom: 0; // Remove margin since it's now horizontal
+
+  .amount {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: $custom-red;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    line-height: 1;
+  }
+}
+
+// Brand Section - Next to price horizontally
+.brand-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // Align text to the left since it's next to price
+  gap: clamp(0.25rem, 0.8vw, 0.5rem);
+
+  .brand-text {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.1em;
+    line-height: 1;
+  }
+
+  .product-text {
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+  }
+}
+
+// Inspiration Text Styling
+.inspiration {
+  max-width: clamp(250px, 30vw, 350px);
+
+  .title {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .copy {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .inspiration { 
+    max-width: clamp(200px, 40vw, 300px);
+  }
+}
+
+@media (max-width: 560px) {
+  .inspiration { 
+    display: none; 
+  }
+  
+  .price {
+    .amount {
+      font-size: clamp(1.5rem, 8vw, 2.5rem);
+    }
+  }
+}
