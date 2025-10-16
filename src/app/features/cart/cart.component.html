@@ -1,0 +1,134 @@
+<!-- Header Component -->
+<app-header></app-header>
+
+<!-- Main Cart Content -->
+<main class="cart-page">
+  <div class="container">
+    
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">{{ 'cart.title' | translate }}</h1>
+      <p class="cart-count" *ngIf="cartSummary().itemCount > 0">
+        {{ cartSummary().itemCount }} {{ 'cart.itemsInCart' | translate }}
+      </p>
+    </div>
+
+    <!-- Empty Cart State -->
+    <div class="empty-cart" *ngIf="cartItems().length === 0">
+      <div class="empty-cart-content">
+        <h2>{{ 'cart.empty.title' | translate }}</h2>
+        <p>{{ 'cart.empty.message' | translate }}</p>
+        <button class="continue-shopping-btn" (click)="continueShopping()">
+          {{ 'cart.continueShopping' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="cart-content" *ngIf="cartItems().length > 0">
+      
+      <!-- Left Column - Cart Items -->
+      <div class="cart-items-section">
+        <div class="cart-item" 
+             *ngFor="let item of cartItems(); trackBy: trackByProductId">
+          
+          <!-- Delete Button - Top Right -->
+          <button 
+            class="remove-btn top-right"
+            (click)="removeFromCart(item.id)"
+            aria-label="Remove item from cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            </svg>
+          </button>
+
+          <!-- Product Image -->
+          <div class="item-image">
+            <img [src]="item.product.image" 
+                 [alt]="item.product.title"
+                 loading="lazy">
+          </div>
+
+          <!-- Product Details -->
+          <div class="item-details">
+            <div class="item-category">{{ item.product.category | titlecase }}</div>
+            <h3 class="item-title">{{ item.product.title }}</h3>
+            <div class="item-description">{{ item.product.description }}</div>
+            
+            <!-- Quantity Controls - Bottom Left -->
+            <div class="item-quantity">
+              <div class="quantity-controls">
+                <button 
+                  class="quantity-btn"
+                  (click)="decreaseQuantity(item.id, item.quantity)"
+                  [disabled]="item.quantity <= 1"
+                  aria-label="Decrease quantity">
+                  −
+                </button>
+                <input 
+                  type="number" 
+                  class="quantity-input"
+                  [value]="item.quantity"
+                  (input)="onQuantityInput($event, item.id)"
+                  min="1"
+                  max="99">
+                <button 
+                  class="quantity-btn"
+                  (click)="increaseQuantity(item.id, item.quantity)"
+                  [disabled]="item.quantity >= 99"
+                  aria-label="Increase quantity">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Section - Right Side -->
+          <div class="item-pricing">
+            <div class="line-total">
+              ${{ item.lineTotal | number:'1.2-2' }}
+            </div>
+            <div class="item-unit-price">
+              ${{ item.product.price | number:'1.2-2' }} × {{ item.quantity }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Order Summary -->
+      <div class="order-summary-section">
+        <div class="order-summary-card">
+          <h2 class="summary-title">{{ 'cart.orderSummary' | translate }}</h2>
+          
+          <div class="summary-row">
+            <span class="summary-label">{{ 'cart.subtotal' | translate }}</span>
+            <span class="summary-value">${{ cartSummary().subtotal | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="summary-row">
+            <span class="summary-label">{{ 'cart.shipping' | translate }}</span>
+            <span class="summary-value shipping-free">{{ 'cart.shippingFree' | translate }}</span>
+          </div>
+          
+          <div class="summary-divider"></div>
+          
+          <div class="summary-row total-row">
+            <span class="summary-label">{{ 'cart.total' | translate }}</span>
+            <span class="summary-total">${{ cartSummary().total | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="summary-actions">
+            <button class="checkout-btn" (click)="proceedToCheckout()">
+              {{ 'cart.proceedToCheckout' | translate }}
+            </button>
+            <button class="continue-shopping-btn secondary" (click)="continueShopping()">
+              {{ 'cart.continueShopping' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

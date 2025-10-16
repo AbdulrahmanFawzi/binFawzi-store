@@ -273,6 +273,11 @@
     border-color: rgba($color-primary, 0.3);
   }
 
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
   // Product Image Container
   .product-image-container {
     position: relative;
@@ -356,7 +361,7 @@
           .star {
             width: 16px;
             height: 16px;
-            filter: brightness(0.3) grayscale(1); // Gray for empty stars
+            filter: brightness(0) invert(0.6); // Light gray for empty stars
             transition: all 0.2s ease;
 
             &.filled {

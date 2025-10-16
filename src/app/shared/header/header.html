@@ -63,10 +63,13 @@
       <img src="assets/images/search.png" [alt]="'accessibility.search' | translate">
     </button>
     <button 
-      class="icon-btn" 
+      class="icon-btn cart-btn" 
       routerLink="/cart"
       [attr.aria-label]="'accessibility.cart' | translate">
       <img src="assets/images/cart.png" [alt]="'accessibility.cart' | translate">
+      @if (cartItemCount().itemCount > 0) {
+        <span class="cart-badge">{{ cartItemCount().itemCount }}</span>
+      }
     </button>
   </div>
 

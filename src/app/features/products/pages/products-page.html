@@ -115,7 +115,11 @@
         <article 
           class="product-card" 
           *ngFor="let product of products; trackBy: trackByProductId"
-          [attr.aria-label]="product.title">
+          [attr.aria-label]="product.title"
+          (click)="navigateToProduct(product.id)"
+          tabindex="0"
+          (keydown.enter)="navigateToProduct(product.id)"
+          (keydown.space)="navigateToProduct(product.id)">
           
           <!-- Product Image -->
           <div class="product-image-container">
@@ -162,6 +166,7 @@
               <span class="product-price">${{ product.price | number:'1.2-2' }}</span>
               <button 
                 class="add-btn"
+                (click)="addToCart(product, $event)"
                 [attr.aria-label]="'products.addToCart' | translate: {product: product.title}">
                 <img src="assets/images/cart.png" alt="" class="btn-icon">
                 {{ 'products.add' | translate }}

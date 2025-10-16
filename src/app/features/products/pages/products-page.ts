@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -18,6 +19,8 @@ import {
 
 // Our core services and models
 import { ProductService } from '@core/products/services';
+import { CartService } from '@core/services/cart.service';
+import { NotificationService } from '@core/services/notification.service';
 import { Product, LoadingState, ProductFilters } from '@core/products/models';
 
 // Shared components
@@ -53,8 +56,11 @@ export class ProductsPageComponent implements OnInit {
    * Educational: Alternative to constructor injection
    */
   private readonly productService = inject(ProductService);
+  private readonly cartService = inject(CartService);
+  private readonly notificationService = inject(NotificationService);
   private readonly formBuilder = inject(FormBuilder);
   private readonly translateService = inject(TranslateService);
+  private readonly router = inject(Router);
 
   /**
    * Reactive Form for search and filters
@@ -232,5 +238,28 @@ export class ProductsPageComponent implements OnInit {
    */
   trackByProductId(index: number, product: Product): number {
     return product.id;
+  }
+
+  /**
+   * Add product to cart
+   * Educational: Cart service integration
+   */
+  addToCart(product: Product, event?: Event): void {
+    // Prevent navigation when clicking Add to Cart button
+    if (event) {
+      event.stopPropagation();
+    }
+    
+    this.cartService.addToCart(product, 1);
+    this.notificationService.showAddToCartSuccess(product.title);
+    console.log(`Added ${product.title} to cart`);
+  }
+
+  /**
+   * Navigate to product details page
+   * Educational: Programmatic routing with parameters
+   */
+  navigateToProduct(productId: number): void {
+    this.router.navigate(['/products', productId]);
   }
 }

@@ -1,0 +1,156 @@
+<!-- Header Component -->
+<app-header></app-header>
+
+<!-- Main Content Container -->
+<main class="product-details-page">
+  
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="loading() === LoadingState.LOADING">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>{{ 'products.loading' | translate }}</p>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-container" *ngIf="loading() === LoadingState.ERROR">
+    <div class="error-message">
+      <h3>{{ 'common.error' | translate }}</h3>
+      <p>{{ error() }}</p>
+      <button class="retry-btn" (click)="goBack()">
+        {{ 'common.goBack' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Product Details Content -->
+  <div class="container" *ngIf="product() && loading() === LoadingState.SUCCESS">
+    
+    <!-- Back Navigation -->
+    <nav class="breadcrumb">
+      <button class="back-btn" (click)="goBack()">
+        <span class="back-icon">←</span>
+        {{ 'navigation.backToStore' | translate }}
+      </button>
+    </nav>
+
+    <!-- Product Details Layout -->
+    <div class="product-layout">
+      
+      <!-- Left Side - Product Image -->
+      <section class="product-image-section">
+        <div class="image-container">
+          <img 
+            [src]="product()!.image" 
+            [alt]="product()!.title"
+            class="product-image"
+            loading="lazy">
+        </div>
+      </section>
+
+      <!-- Right Side - Product Details -->
+      <section class="product-details-section">
+        
+        <!-- Category Badge -->
+        <div class="product-category">
+          {{ product()!.category | titlecase }}
+        </div>
+
+        <!-- Product Title -->
+        <h1 class="product-title">{{ product()!.title }}</h1>
+
+        <!-- Rating -->
+        <div class="product-rating" *ngIf="product()!.rating">
+          <div class="rating-stars">
+            <div class="stars">
+              <img 
+                *ngFor="let filled of getStarArray(product()!.rating!.rate); let i = index"
+                src="assets/images/star.png" 
+                alt="" 
+                class="star" 
+                [class.filled]="filled">
+            </div>
+            <span class="rating-value">{{ product()!.rating!.rate | number:'1.1-1' }}</span>
+            <span class="rating-count">({{ product()!.rating!.count }})</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="product-description">
+          <p>{{ product()!.description }}</p>
+        </div>
+
+        <!-- Available Colors (Mock data for design) -->
+        <div class="product-options">
+          <div class="color-options">
+            <h4>{{ 'products.availableColors' | translate }}</h4>
+            <div class="color-swatches">
+              <button class="color-swatch black selected" aria-label="Black"></button>
+              <button class="color-swatch white" aria-label="White"></button>
+              <button class="color-swatch red" aria-label="Red"></button>
+            </div>
+          </div>
+
+          <!-- Available Sizes (Mock data for design) -->
+          <div class="size-options">
+            <h4>{{ 'products.availableSizes' | translate }}</h4>
+            <div class="size-buttons">
+              <button class="size-btn">7</button>
+              <button class="size-btn">8</button>
+              <button class="size-btn selected">9</button>
+              <button class="size-btn">10</button>
+              <button class="size-btn">11</button>
+              <button class="size-btn">12</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quantity Selector -->
+        <div class="quantity-section">
+          <h4>{{ 'products.quantity' | translate }}</h4>
+          <div class="quantity-controls">
+            <button 
+              class="quantity-btn"
+              (click)="decreaseQuantity()"
+              [disabled]="quantity() <= 1"
+              aria-label="Decrease quantity">
+              −
+            </button>
+            <input 
+              type="number" 
+              class="quantity-input"
+              [value]="quantity()"
+              (input)="updateQuantity($any($event.target).value)"
+              min="1"
+              max="99">
+            <button 
+              class="quantity-btn"
+              (click)="increaseQuantity()"
+              [disabled]="quantity() >= 99"
+              aria-label="Increase quantity">
+              +
+            </button>
+            <span class="total-price">${{ (product()!.price * quantity()) | number:'1.2-2' }}</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button 
+            class="add-to-cart-btn"
+            (click)="addToCart()">
+            <img src="assets/images/cart.png" alt="" class="btn-icon">
+            {{ 'products.addToCartSimple' | translate }}
+          </button>
+          <button 
+            class="buy-now-btn"
+            (click)="buyNow()">
+            {{ 'products.buyNow' | translate }}
+          </button>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+</main>

@@ -27,6 +27,34 @@ export const routes: Routes = [
     title: 'Products - BinFawzi Store'
   },
   
+  // 📦 Product Details Page
+  {
+    path: 'products/:id',
+    loadComponent: () => import('./features/products/pages/product-details/product-details').then(m => m.ProductDetailsComponent),
+    title: 'Product Details - BinFawzi Store'
+  },
+  
+  // 🛒 Cart Page
+  {
+    path: 'cart',
+    loadComponent: () => import('./features/cart/cart.component').then(m => m.CartComponent),
+    title: 'Your Cart - BinFawzi Store'
+  },
+  
+  // 💳 Checkout Page
+  {
+    path: 'checkout',
+    loadComponent: () => import('./features/checkout/checkout.component').then(m => m.CheckoutComponent),
+    title: 'Checkout - BinFawzi Store'
+  },
+  
+  // ✅ Order Confirmed Page
+  {
+    path: 'order-confirmed',
+    loadComponent: () => import('./features/order-confirmed/order-confirmed.component').then(m => m.OrderConfirmedComponent),
+    title: 'Order Confirmed - BinFawzi Store'
+  },
+  
   // 🏠 Default redirect to login for now
   {
     path: '',

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { SidebarComponent } from '../sidebar/sidebar';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,18 @@ import { SidebarComponent } from '../sidebar/sidebar';
   styleUrls: ['./header.scss']
 })
 export class HeaderComponent {
+  private cartService = inject(CartService);
+
   /**
    * Controls sidebar open/close state
    * Educational: Component state management
    */
   isSidebarOpen = false;
+
+  /**
+   * Get cart item count for badge display
+   */
+  readonly cartItemCount = this.cartService.summary;
 
   /**
    * Toggle sidebar visibility

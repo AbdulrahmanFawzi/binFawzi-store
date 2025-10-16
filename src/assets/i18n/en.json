@@ -71,6 +71,7 @@
     "save": "Save",
     "close": "Close",
     "back": "Back",
+    "goBack": "Go Back",
     "next": "Next",
     "previous": "Previous"
   },
@@ -101,6 +102,7 @@
     "login": "Login",
     "logout": "Logout",
     "signup": "Sign Up",
+    "backToStore": "Back to Store",
     "sidebarMenu": "Navigation Menu",
     "openMenu": "Open Navigation Menu"
   },
@@ -136,6 +138,11 @@
     },
     "add": "Add",
     "addToCart": "Add {{product}} to cart",
+    "addToCartSimple": "ADD TO CART",
+    "buyNow": "Buy Now",
+    "quantity": "Quantity",
+    "availableColors": "Available Colors",
+    "availableSizes": "Available Sizes",
     "showingResults": "Showing {{count}} products",
     "loading": "Loading products...",
     "error": {
@@ -165,5 +172,51 @@
       "message": "Try adjusting your search or filters to find what you're looking for.",
       "suggestion": "Browse all products"
     }
+  },
+  "cart": {
+    "title": "YOUR CART",
+    "itemsInCart": "items in your cart",
+    "orderSummary": "ORDER SUMMARY",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingFree": "Free",
+    "total": "Total",
+    "proceedToCheckout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "empty": {
+      "title": "Your cart is empty",
+      "message": "Add some products to your cart to get started with your shopping."
+    }
+  },
+  "checkout": {
+    "title": "CHECKOUT",
+    "subtitle": "Complete your order by filling out the form below",
+    "backToCart": "Back to Cart",
+    "deliveryInformation": "DELIVERY INFORMATION",
+    "orderSummary": "ORDER SUMMARY",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingFree": "Free",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "continueShopping": "Continue Shopping",
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "address": "Delivery Address", 
+      "addressPlaceholder": "Enter your delivery address",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter your phone number"
+    },
+    "empty": {
+      "title": "Your cart is empty",
+      "message": "Add some products to your cart before proceeding to checkout."
+    }
+  },
+  "orderConfirmed": {
+    "title": "ORDER CONFIRMED!",
+    "subtitle": "Thank you for your order. We'll send you a confirmation email shortly.",
+    "continueShopping": "Continue Shopping",
+    "backToHome": "Back to Home"
   }
 }
